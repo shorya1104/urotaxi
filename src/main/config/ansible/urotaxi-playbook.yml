@@ -30,7 +30,7 @@
         dest: /u01/middleware
         remote_src: true
     - name: find jdk home
-      shell: "readlink -f $(which java) | sed 's/bin*.//g'"        
+      shell: "readlink -f $(which java) | sed 's/bin.*//g'"        
       register: JDK_HOME
     - name: install tomcat as service
       template:
