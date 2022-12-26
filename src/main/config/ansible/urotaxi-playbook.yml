@@ -40,6 +40,13 @@
       become_method: sudo
       notify:
         - tomcatreload
+    - name: install python3-pymysql
+      apt:
+        name: python3-pymysql
+        state: present
+        update_cache: yes
+      become: yes
+      become_method: sudo    
     - name: create schema
       community.mysql.mysql_db:
         state: import
