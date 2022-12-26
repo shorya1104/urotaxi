@@ -62,7 +62,7 @@
       community.mysql.mysql_db:
         state: import
         name: all   
-        target: {{ lookup('env','WORKSPACE') }}/src/main/db/urotaxidb.sql
+        target: "{{ lookup('env','WORKSPACE') }}/src/main/db/urotaxidb.sql"
         login_host : "{{ lookup('env','DB_HOST') }}"
         login_user : "{{ lookup('env','UROTAXI_DB_USER') }}"
         login_password: "{{ lookup('env','UROTAXI_DB_PSW') }}"
