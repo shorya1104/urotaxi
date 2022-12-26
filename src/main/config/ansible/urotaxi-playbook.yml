@@ -66,12 +66,13 @@
       service:
         name: tomcat
         state: reloaded
+        enabled: yes 
       become: yes
       become_method: sudo
     - name: tomcatrestart
       service:
         name: tomcat
-        state: reloaded
+        state: restarted
       become: yes
       become_method: sudo           
 
