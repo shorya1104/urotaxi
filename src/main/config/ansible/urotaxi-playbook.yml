@@ -69,7 +69,7 @@
     - name: deploy
       copy:
         src: "{{ lookup('env','WORKSPACE') }}/target/urotaxi.war"
-        dest: /u01/middleware/apache-tomcat-9.0.70/webapps
+        dest: /u01/middleware/apache-tomcat-9.0.70/webapps/
       notify:
         - tomcatrestart
   handlers:
