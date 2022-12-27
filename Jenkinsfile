@@ -6,7 +6,7 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         UROTAXI_DB_USER = 'root'
-        UROTAXI_DB_PSW = credentials('UROTAX_DB_PSW')
+        UROTAXI_DB_PSW = credentials('UROTAXI_DB_PSW')
         ANSIBLE_HOST_KEY_CHECKING="False"
     }
     options {
@@ -22,7 +22,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git(url: 'https://github.com/techsriman/urotaxijenkins.git', credentialsId: 'foodiespat')
+                git(url: 'https://github.com/techsriman/urotaxijenkins.git', credentialsId: 'urotaxigitpat')
             }
         }
         stage('test') {
