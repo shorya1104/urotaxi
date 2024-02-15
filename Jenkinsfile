@@ -59,7 +59,7 @@ pipeline {
                     sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
                     sh "chmod +x docker.sh"
                     sh "./docker.sh"
-                    sh " docker push ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh " sudo docker push ${IMAGE_NAME}:${IMAGE_TAG}"
                     // docker.withRegistry('',DOCKER_PASS){
                     //     docker_image = docker.build "{IMAGE_NAME}"
                     // }
