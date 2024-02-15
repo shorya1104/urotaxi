@@ -7,7 +7,7 @@ pipeline {
         APP_VERSION= "1.0.0"
         DOCKER_USER="shoryasngh"
         DOCKER_PASS="Shorya@_1104"
-        IMAGE_NAME="${DOCKER_USER}" "+/" + "${APP_NAME}"
+        IMAGE_NAME="${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG="${APP_VERSION}-${BUILD_NUMBER}"
     }
     tools{
