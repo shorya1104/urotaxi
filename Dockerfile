@@ -11,8 +11,8 @@ RUN tar -xvzf openjdk-11.0.2_linux-x64_bin.tar.gz
 RUN rm openjdk-11.0.2_linux-x64_bin.tar.gz
 
 ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.tar.gz .
-RUN tar -xvzf apache-tomcat-9.0.71.tar.gz
-RUN rm apache-tomcat-9.0.71.tar.gz
+RUN tar -xvzf apache-tomcat-9.0.85.tar.gz
+RUN rm apache-tomcat-9.0.85.tar.gz
 
 RUN apt update -y
 RUN apt install -y curl
