@@ -4,11 +4,11 @@ pipeline {
     }
     environment {
         APP_NAME = "urotaxi"
-        APP_VERSION= "13.0.0"
+        APP_VERSION= "1.0.0"
         DOCKER_USER="shoryasngh"
         DOCKER_PASS="Shorya@_1104"
         IMAGE_NAME="${DOCKER_USER}" + "/" + "${APP_NAME}"
-        IMAGE_TAG="${APP_VERSION}-${BUILD_NUMBER}"
+        IMAGE_TAG="${BUILD_NUMBER}"
     }
     tools{
         jdk 'Java17'
