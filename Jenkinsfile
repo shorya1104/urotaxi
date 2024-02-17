@@ -82,7 +82,8 @@ pipeline {
                     sh "python3 install_docker-compose.py"
                     withCredentials([usernamePassword(credentialsId: 'mysqlcredentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]){
                         writeFile file: 'env.list', text: "MYSQL_PASSWORD=${MYSQL_PASSWORD}\nMYSQL_USER=${MYSQL_USER}"
-                        sh "docker-compose --env-file env.list up -d"
+                       sh "echo ${MYSQL_USER} "
+                        // sh "docker-compose --env-file env.list up -d"
                     }
                 }
             }
