@@ -59,13 +59,6 @@ pipeline {
                     sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
                     sh "python3 docker_login.py"
                     sh "docker image push ${IMAGE_NAME}:${IMAGE_TAG}"
-                    // docker.withRegistry('',DOCKER_PASS){
-                    //     docker_image = docker.build "{IMAGE_NAME}"
-                    // }
-                    // docker.withRegistry('', DOCKER_PASS){
-                    //     docker_image.push(${IMAGE_NAME})
-                    //     docker_image.push('latest')
-                    // }
                 }
             }
          }
