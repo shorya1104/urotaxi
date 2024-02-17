@@ -57,8 +57,7 @@ pipeline {
             steps {
                 script {
                     sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-                    sh "chmod +x docker_login.sh"
-                    sh "./docker_login.sh"
+                    sh "python3 docker_login.py"
                     sh " sudo docker push ${IMAGE_NAME}:${IMAGE_TAG}"
                     // docker.withRegistry('',DOCKER_PASS){
                     //     docker_image = docker.build "{IMAGE_NAME}"
