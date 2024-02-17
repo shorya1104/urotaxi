@@ -17,8 +17,8 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_ROT_PASSWORD: "Shorya@_1104"
-      - MYSQL_DATABASE: "urotaxi"
+      - MYSQL_ROT_PASSWORD: Shorya@_1104
+      - MYSQL_DATABASE: urotaxi
     volumes:
       - mysql_data:/var/lib/mysql
 volumes:
