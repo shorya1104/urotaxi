@@ -9,7 +9,7 @@ pipeline {
         DOCKER_PASS="Shorya@_1104"
         IMAGE_NAME="${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG="${BUILD_NUMBER}"
-        IMAGE_WITH_TAG="${DOCKER_NAME}" + "\" + "${IMAGE_TAG}"
+        IMAGE_WITH_TAG="${DOCKER_NAME}" + ":" + "${IMAGE_TAG}"
         MYSQL_USER= ""
         MYSQL_PASSWORD= ""
         MYSQL_DB= "urotaxi"
