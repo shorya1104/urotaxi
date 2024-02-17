@@ -72,8 +72,6 @@ pipeline {
                     sh "python3 install_docker-compose.py"
                     withCredentials([usernamePassword(credentialsId: 'mysqlcredentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]){
                         writeFile file: 'env.list', text: "MYSQL_PASSWORD=${MYSQL_PASSWORD}\nMYSQL_USER=${MYSQL_USER}"
-                        sh "docker stop $(docker ps -q)"
-                        sh "docker rm $(docker ps -q)"
                         sh "docker-compose --env-file env.list up -d"
                         sh "docker cp src/main/db/urotaxidb.sql mysqldb:/"
                     }
