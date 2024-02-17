@@ -57,7 +57,7 @@ pipeline {
             steps {
                 script {
                     sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-                    sh "chmod +x docker.sh"
+                    sh "chmod +x docker_login.sh"
                     sh "./docker.sh"
                     sh " sudo docker push ${IMAGE_NAME}:${IMAGE_TAG}"
                     // docker.withRegistry('',DOCKER_PASS){
