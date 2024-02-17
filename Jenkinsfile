@@ -62,5 +62,13 @@ pipeline {
                 }
             }
          }
+         stage("run app with docker-compose"){
+            steps {
+                script {
+                    sh "python3 install_docker-compose.py"
+                    sh "docker-compose up"
+                }
+            }
+         }
     }
 }
