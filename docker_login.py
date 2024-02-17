@@ -15,6 +15,6 @@ if __name__ == "__main__":
     # Replace these values with your Docker registry credentials and URL
     username = "shoryasngh"
     password = "Shorya@_1104"
-    registry_url = "https://hub.docker.com/"
+    registry_url = "docker.io"
 
     login_to_registry(username, password, registry_url)
