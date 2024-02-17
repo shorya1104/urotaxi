@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: ${IMAGE_WITH_TAG}
+    image: ${IMAGE_NAME}
     restart: always
     ports:
       -  8080:8080
