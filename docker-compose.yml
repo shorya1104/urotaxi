@@ -7,8 +7,8 @@ services:
       -  8080:8080
     environment:
       MYSQL_HOST: mysqldb
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: Shorya@_1104
       MYSQL_PORT: 3306
   mysqldb:
     container_name: mysqldb
