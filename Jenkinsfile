@@ -9,6 +9,9 @@ pipeline {
         DOCKER_PASS="Shorya@_1104"
         IMAGE_NAME="${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG="${BUILD_NUMBER}"
+        MYSQL_USER= ""
+        MYSQL_PASSWORD= ""
+        MYSQL_DB= "urotaxi"
     }
     tools{
         jdk 'Java17'
@@ -62,11 +65,25 @@ pipeline {
                 }
             }
          }
+        //  stage('prepare') {
+        //     steps {
+        //         sh '''
+        //             sed -i "s|#dbusername#|$UROTAXI_DB_USER|g" src/main/resources/application.yml
+        //             sed -i "s|#dbpassword#|$UROTAXI_DB_PSW|g" src/main/resources/application.yml
+        //             dbHost=$(cat dbHosts)
+                    
+        //             sed -i "s|#dbhost#|$dbHost|g" src/main/resources/application.yml
+        //         '''
+        //     }
+        // }
          stage("run app with docker-compose"){
             steps {
                 script {
                     sh "python3 install_docker-compose.py"
-                    sh "docker-compose up"
+                    withCredentials([usernamePassword(credentialsId: 'mysqlcredentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]){
+                        writeFile file: 'env.list', text: "MYSQL_PASSWORD=${MYSQL_PASSWORD}\nMYSQL_USER=${MYSQL_USER}"
+                    }
+                    sh "docker-compose --env-file env.list up -d"
                 }
             }
          }
