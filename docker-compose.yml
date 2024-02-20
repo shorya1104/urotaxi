@@ -7,19 +7,23 @@ services:
       -  8080:8080
     environment:
       MYSQL_HOST: mysqldb
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: Shorya1104
+      MYSQL_USER: shorya
+      MYSQL_PASSWORD: Shorya@_1104
       MYSQL_PORT: 3306
   mysqldb:
-    container_name: mysqldb
-    image: mysql:8.0.28
+    image: mysql:latest
+    container_name: mysql_db
     restart: always
-    ports:
-      - 3306:3306
     environment:
-      MYSQL_ROT_PASSWORD: Shorya1104
-      MYSQL_DATABASE: urotaxi
+      MYSQL_ROOT_PASSWORD: Shorya1104   # Change this to your desired root password
+      MYSQL_DATABASE: test       # Change this to your desired database name
+      MYSQL_USER: shorya               # Change this to your desired username
+      MYSQL_PASSWORD: Shorya@_1104      # Change this to your desired password for the user
+    ports:
+      - "3306:3306"   # Expose MySQL port to host machine
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql           # Persist data to host machine
+      # - ./mysql-scripts:/docker-entrypoint-initdb.d   # Optional: Load SQL scripts on container startup
+  
 volumes:
   mysql_data:
