@@ -63,11 +63,12 @@ pipeline {
                 script {
                     docker.withRegistry('',DOCKER_PASS){
                         docker_image=docker.build "${IMAGE_WITH_TAG}"
-                    }
-                    docker.withRegistry('',DOCKER_PASS){
                         docker_image.push("${IMAGE_WITH_TAG}")
-                        // docker_image.push('latest')
                     }
+                    // docker.withRegistry('',DOCKER_PASS){
+                    //     docker_image.push("${IMAGE_WITH_TAG}")
+                    //     // docker_image.push('latest')
+                    // }
                     // sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
                     // sh "python3 docker_login.py"
                     // sh "docker image push ${IMAGE_NAME}:${IMAGE_TAG}"
