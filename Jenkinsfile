@@ -8,7 +8,7 @@ pipeline {
         DOCKER_USER="shoryasngh"
         DOCKER_PASS= 'dockerhub'
         IMAGE_NAME="${DOCKER_USER}" + "/" + "${APP_NAME}"
-        IMAGE_TAG="${BUILD_NUMBER}"
+        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
         IMAGE_WITH_TAG="${IMAGE_NAME}" + ":" + "${IMAGE_TAG}"
         CONTAINER_NAME="mysql_db"
         MYSQL_USER= ""
@@ -82,11 +82,11 @@ pipeline {
                }
            }
        }
-	    stage ('Cleanup Artifacts') {
+	   stage ('Cleanup Artifacts') {
            steps {
                script {
-                    sh "docker rmi '$(docker images -q)'"
-                    // sh "docker rmi ${IMAGE_NAME}:latest"
+                    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker rmi ${IMAGE_NAME}:latest"
                }
           }
        }
