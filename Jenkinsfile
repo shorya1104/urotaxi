@@ -8,7 +8,7 @@ pipeline {
         DOCKER_USER="shoryasngh"
         DOCKER_PASS= 'dockerhub'
         IMAGE_NAME="${DOCKER_USER}" + "/" + "${APP_NAME}"
-        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        IMAGE_TAG = "${ APP_VERSION}-${BUILD_NUMBER}"
         IMAGE_WITH_TAG="${IMAGE_NAME}" + ":" + "${IMAGE_TAG}"
         CONTAINER_NAME="mysql_db"
         MYSQL_USER= ""
