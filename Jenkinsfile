@@ -75,7 +75,7 @@ pipeline {
                         writeFile file: 'env.list', text: "MYSQL_PASSWORD=${MYSQL_PASSWORD}\nMYSQL_USER=${MYSQL_USER}"
                         sh "docker-compose --env-file env.list up -d"
                         sh "docker cp src/main/db/urotaxidb.sql ${CONTAINER_NAME}:/"
-                        //sh " docker exec -it ${CONTAINER_NAME} mysql -u {MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DB} < 
+                        sh " docker exec -it ${CONTAINER_NAME} mysql -u {MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DB} < /urotaxidb.sql
                     }
                 }
             }
