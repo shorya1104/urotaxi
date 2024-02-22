@@ -16,7 +16,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Shorya1104   # Change this to your desired root password
-      MYSQL_DATABASE: test       # Change this to your desired database name
+      MYSQL_DATABASE: urotaxidb       # Change this to your desired database name
       MYSQL_USER: shorya               # Change this to your desired username
       MYSQL_PASSWORD: Shorya@_1104      # Change this to your desired password for the user
     ports:
