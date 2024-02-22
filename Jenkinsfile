@@ -10,6 +10,7 @@ pipeline {
         IMAGE_NAME="${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG="${BUILD_NUMBER}"
         IMAGE_WITH_TAG="${IMAGE_NAME}" + ":" + "${IMAGE_TAG}"
+        CONTAINER_NAME="mysql_db"
         MYSQL_USER= ""
         MYSQL_PASSWORD= ""
         MYSQL_DB= "urotaxi"
@@ -73,7 +74,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'mysqlcredentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]){
                         writeFile file: 'env.list', text: "MYSQL_PASSWORD=${MYSQL_PASSWORD}\nMYSQL_USER=${MYSQL_USER}"
                         sh "docker-compose --env-file env.list up -d"
-                        sh "docker cp src/main/db/urotaxidb.sql mysql_db:/"
+                        sh "docker cp src/main/db/urotaxidb.sql ${CONTAINER_NAME}:/"
+                        //sh " docker exec -it ${CONTAINER_NAME} mysql -u {MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DB} < 
                     }
                 }
             }
