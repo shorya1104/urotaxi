@@ -61,35 +61,35 @@ pipeline {
          stage("Build & push docker image"){
             steps {
                 script {
-                    docker.withRegistry('',DOCKER_PASS){
-                        docker_image=docker.build "${IMAGE_NAME}"
-                        docker_image.push("latest")
-                    }
+                    // docker.withRegistry('',DOCKER_PASS){
+                    //     docker_image=docker.build "${IMAGE_NAME}"
+                    //     docker_image.push("latest")
+                    // }
                     // docker.withRegistry('',DOCKER_PASS){
                     //     docker_image.push("${IMAGE_WITH_TAG}")
                     //     // docker_image.push('latest')
                     // }
-                    // sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-                    // sh "python3 docker_login.py"
-                    // sh "docker image push ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                    sh "python3 docker_login.py"
+                    sh "docker image push ${IMAGE_NAME}:${IMAGE_TAG}"
                 }
             }
          }
-        stage("Trivy Scan") {
-           steps {
-               script {
-	            sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image shoryasngh/urotaxi:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
-               }
-           }
-       }
-	   stage ('Cleanup Artifacts') {
-           steps {
-               script {
-                    // sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "docker rmi ${IMAGE_NAME}:latest"
-               }
-          }
-       }
+    //     stage("Trivy Scan") {
+    //        steps {
+    //            script {
+	   //          sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image shoryasngh/urotaxi:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
+    //            }
+    //        }
+    //    }
+	   // stage ('Cleanup Artifacts') {
+    //        steps {
+    //            script {
+    //                 // sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+    //                 sh "docker rmi ${IMAGE_NAME}:latest"
+    //            }
+    //       }
+    //    }
          stage("run app with docker-compose"){
             steps {
                 script {
