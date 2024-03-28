@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  # namespace: game-2048
+  name: ingress-service-java
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instances
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+          - path: /urotaxi
+            pathType: Prefix
+            backend:
+              service:
+                name: my-deployment-service
+                port:
+                  number: 8080
+
+    
+

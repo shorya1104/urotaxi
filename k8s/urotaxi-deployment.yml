@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urotaxideployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: urotaxi
+      version: "1.0"
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: urotaxi
+      version: "1.0"
+  template:
+    metadata: 
+      labels:
+        app: urotaxi
+        version: "1.0"
+    spec:
+      containers:
+        - name: urotaxicontainer
+          image: shoryasngh/urotaxi:1.0.0-5 
+          ports:
+            - name: tomcatport
+              containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /urotaxi/actuator/health/readiness.htm
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutSeconds: 15
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /urotaxi/actuator/health/liveness.htm
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutSeconds: 15
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:  
+              cpu: 1
+              memory: 1024Mi
